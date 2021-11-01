@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="37" height="42" viewBox="0 0 37 42">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Path_19" data-name="Path 19" d="M20.008,6.716,15.362.057a6.735,6.735,0,0,0,4.262-6.54c0-4.646-3.462-7.517-9-7.517H1.66V6.716H6.454V.945h4.41l4,5.771ZM14.77-6.483c0,2.249-1.48,3.61-4.41,3.61H6.454v-7.221h3.906C13.29-10.094,14.77-8.762,14.77-6.483Z" transform="translate(91.373 39.65)" fill="#fff"/>
+    </clipPath>
+    <clipPath id="clip-reveal-symbol">
+      <rect width="37" height="42"/>
+    </clipPath>
+  </defs>
+  <g id="reveal-symbol" clip-path="url(#clip-reveal-symbol)">
+    <g id="reveal-symbol-2" transform="translate(-84.046 -21.087)">
+      <path id="Path_23" data-name="Path 23" d="M.02.026,25.953-.75l-.771,26.128L.259,24.944Z" transform="translate(84.562 44.398) rotate(-45)" fill="#be97ff"/>
+      <path id="Path_22" data-name="Path 22" d="M.02.026,25.953-.75l-.771,26.128L.259,24.944Z" transform="translate(84.562 40.398) rotate(-45)" fill="#7c2cff"/>
+      <g id="Mask_Group_1" data-name="Mask Group 1" transform="translate(0.913 6.031)" clip-path="url(#clip-path)">
+        <path id="Path_21" data-name="Path 21" d="M0,0,24.551.9l.9,24.551L.9,24.551Z" transform="translate(83.539 32.685) rotate(-45)" fill="#fff"/>
+      </g>
+      <path id="Path_20" data-name="Path 20" d="M150.868,179.6l19.816,17.086-23.52-4.334Z" transform="matrix(0.995, 0.105, -0.105, 0.995, -28.874, -172.915)" fill="#be97ff"/>
+    </g>
+  </g>
+</svg>

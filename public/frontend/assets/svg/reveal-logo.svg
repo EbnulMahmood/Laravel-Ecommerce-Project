@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="93" height="24" viewBox="0 0 93 24">
+    <defs>
+        <clipPath id="clip-reveal-2">
+            <rect width="93" height="24" />
+        </clipPath>
+    </defs>
+    <g id="reveal-2" clip-path="url(#clip-reveal-2)">
+        <g id="Group_3" data-name="Group 3" transform="translate(-69 -179.464)">
+            <path id="Path_6" data-name="Path 6" d="M0,0H75.092L92.5,15.545V24H0Z" transform="translate(69 179.464)" fill="#7c2cff" />
+            <path id="Path_4" data-name="Path 4" d="M39.82-14,35.5-4,31.24-14h-3.5L33.78,0h3.2l6.06-14Zm7.6,11.4V-5.84h6.5V-8.36h-6.5V-11.4h7.36V-14H44.2V0H55.04V-2.6Z" transform="translate(72.34 198.464)" fill="#fff" />
+            <path id="Path_5" data-name="Path 5" d="M14.06,0,10.92-4.5A4.552,4.552,0,0,0,13.8-8.92c0-3.14-2.34-5.08-6.08-5.08H1.66V0H4.9V-3.9H7.88L10.58,0ZM10.52-8.92c0,1.52-1,2.44-2.98,2.44H4.9v-4.88H7.54C9.52-11.36,10.52-10.46,10.52-8.92ZM19.58-2.6V-5.84h6.5V-8.36h-6.5V-11.4h7.36V-14H16.36V0H27.2V-2.6ZM68.08,0h3.4L65.22-14h-3.2L55.78,0H59.1l1.24-3h6.5Zm-6.7-5.46,2.22-5.36,2.22,5.36ZM72.94,0H83.2V-2.64H76.18V-14H72.94Z" transform="translate(72.34 198.464)" fill="#fff" />
+            <path id="Path_7" data-name="Path 7" d="M144.188,179.512l17.313,15.12-21.3-8.758Z" fill="#be97ff" />
+        </g>
+    </g>
+</svg>
