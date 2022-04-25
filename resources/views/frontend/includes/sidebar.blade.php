@@ -33,15 +33,18 @@
         </div>
         <hr />
         <div class="p-4">
-            <div class="form-group">
-                <label class="label" for="searchContent">Enter keyword</label>
-                <input type="email" class="form-control form-control-simple" id="searchContent" placeholder="Search key words like furniture, sofa...">
-            </div>
-            <div class="row justify-content-center pt-3">
-                <div class="col-md-10">
-                    <button type="submit" class="btn btn-sm btn-block btn-dark btn-rounded px-5">Search the site</button>
+            <form action="{{ route('search.product') }}" method="GET">
+                @csrf
+                <div class="form-group">
+                    <label class="label" for="searchContent">Enter keyword</label>
+                    <input type="text" name="search" class="form-control form-control-simple" id="searchContent" placeholder="Search key words like furniture, sofa...">
                 </div>
-            </div>
+                <div class="row justify-content-center pt-3">
+                    <div class="col-md-10">
+                        <button type="submit" class="btn btn-sm btn-block btn-dark btn-rounded px-5">Search the site</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
   </nav>

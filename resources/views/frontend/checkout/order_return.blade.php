@@ -100,18 +100,19 @@
     
                     <div class="bg-white shadow-sm rounded mb-3 p-3 p-md-5">
 
-                        @if ($receipt['status'] === 'Pending')
-                            <form>
+                        @if ($receipt['status'] !== 'Canceled')
+                            <form action="{{ route('cancel.order', $order_id) }}" method="POST">
+                                @csrf
                                 <div class="form-group">
                                     <label class="label" for="return_reason">Return Reason</label>
-                                    <textarea class="form-control" name="return_reason" id="return_reason" cols="30" rows="10"></textarea>
+                                    <textarea required class="form-control" name="return_reason" id="return_reason" cols="30" rows="10"></textarea>
                                     <small class="form-text text-muted">Please let us know why you need to cancel order.</small>
                                 </div>
-                                <button type="submit" class="btn btn-danger">Cancel</button>
+                                <button type="submit" class="btn btn-danger">Cancel Order</button>
                             </form>
                         @else
                             <div class="alert alert-danger" role="alert">
-                                Your order is not pending!
+                                Your order is Canceled!
                             </div>
                         @endif
                     </div>

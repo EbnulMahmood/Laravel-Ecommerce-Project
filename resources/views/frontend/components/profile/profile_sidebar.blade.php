@@ -85,6 +85,24 @@
                       </div>
                   </a>
               </li>
+              <li class="list-group-item {{ ($route == 'return.order.list') ? 'active' : '' }}">
+                <a href="{{ route('return.order.list') }}">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="icon icon-list mr-2"></i>
+                            <span>Return Orders</span>
+                        </span>
+                    </div>
+                </a>
+              </li>
+              <li class="list-group-item {{ ($route == 'canceled.list') ? 'active' : '' }}">
+                <a href="{{ route('canceled.list') }}">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="icon icon-list mr-2"></i>
+                            <span>Canceled Orders</span>
+                        </span>
+                    </div>
+                </a>
+              </li>
               <li class="list-group-item {{ ($route == 'user.wishlist') ? 'active' : '' }}">
                   <a href="{{ route('user.wishlist') }}">
                       <div class="d-flex justify-content-between align-items-center">

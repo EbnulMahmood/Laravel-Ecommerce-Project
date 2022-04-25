@@ -126,25 +126,84 @@
                     <li class="submenu-item {{ ($route == 'delivered.order') ? 'active' : '' }}">
                         <a href="{{ route('delivered.order') }}">Delivered Order</a>
                     </li>
+                </ul>
+            </li>
+            
+            <li class="sidebar-title">Return Request</li>
+            
+            <li class="sidebar-item  has-sub {{ ($prefix == '/return') ? 'active' : '' }}">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-gear-fill"></i>
+                    <span>Requests</span>
+                </a>
+                <ul class="submenu {{ ($prefix == '/return') ? 'active' : '' }}">
+                    <li class="submenu-item {{ ($route == 'return.request') ? 'active' : '' }}">
+                        <a href="{{ route('return.request') }}">Return Requested</a>
+                    </li>
                     <li class="submenu-item {{ ($route == 'canceled.order') ? 'active' : '' }}">
                         <a href="{{ route('canceled.order') }}">Canceled Order</a>
                     </li>
                 </ul>
             </li>
+
+            <li class="sidebar-title">Review Request</li>
             
-            <li class="sidebar-title">Forms &amp; Tables</li>
-            
-            <li class="sidebar-item  has-sub">
+            <li class="sidebar-item  has-sub {{ ($prefix == '/review') ? 'active' : '' }}">
                 <a href="#" class='sidebar-link'>
                     <i class="bi bi-gear-fill"></i>
-                    <span>Settings</span>
+                    <span>Requests</span>
                 </a>
-                <ul class="submenu ">
-                    <li class="submenu-item ">
+                <ul class="submenu {{ ($prefix == '/review') ? 'active' : '' }}">
+                    <li class="submenu-item {{ ($route == 'pending.review') ? 'active' : '' }}">
+                        <a href="{{ route('pending.review') }}">All Review</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="sidebar-title">Reports &amp; Statistics</li>
+            
+            <li class="sidebar-item  has-sub {{ ($prefix == '/reports') ? 'active' : '' }}">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-gear-fill"></i>
+                    <span>Reports</span>
+                </a>
+                <ul class="submenu {{ ($prefix == '/reports') ? 'active' : '' }}">
+                    <li class="submenu-item {{ ($route == 'all.reports') ? 'active' : '' }}">
+                        <a href="{{ route('all.reports') }}">All Reports</a>
+                    </li>
+                    <li class="submenu-item {{ ($route == 'all.users') ? 'active' : '' }}">
+                        <a href="{{ route('all.users') }}">All Users</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="sidebar-title">Settings</li>
+            
+            <li class="sidebar-item  has-sub {{ ($prefix == '/admin') ? 'active' : '' }}">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-gear-fill"></i>
+                    <span>Password</span>
+                </a>
+                <ul class="submenu {{ ($prefix == '/admin') ? 'active' : '' }}">
+                    <li class="submenu-item {{ ($route == 'admin.profile.edit') ? 'active' : '' }}">
+                        <a href="{{ route('admin.profile.edit') }}">Edit Profile</a>
+                    </li>
+                    <li class="submenu-item {{ ($route == 'admin.change.password') ? 'active' : '' }}">
                         <a href="{{ route('admin.change.password') }}">Change Password</a>
                     </li>
                 </ul>
             </li>
+            {{-- <li class="sidebar-item  has-sub {{ ($prefix == '/site') ? 'active' : '' }}">
+                <a href="#" class='sidebar-link'>
+                    <i class="bi bi-gear-fill"></i>
+                    <span>Site</span>
+                </a>
+                <ul class="submenu {{ ($prefix == '/site') ? 'active' : '' }}">
+                    <li class="submenu-item {{ ($route == 'site.settings') ? 'active' : '' }}">
+                        <a href="{{ route('site.settings') }}">Edit Profile</a>
+                    </li>
+                </ul>
+            </li> --}}
             
             <li class="sidebar-title">Raise Support</li>
 

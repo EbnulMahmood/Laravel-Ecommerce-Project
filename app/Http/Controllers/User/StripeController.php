@@ -137,10 +137,4 @@ class StripeController extends Controller
                 ]);
         return $pdf->download($receipt['invoice_no'].'.pdf');
     }
-
-    public function ReturnOrder($order_id)
-    {
-        $receipt = StripeController::Receipt($order_id);        
-        return view('frontend.checkout.order_return', compact('receipt'));
-    }
 }

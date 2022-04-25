@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Auth;
+use App\Models\Category;
+use App\Models\Product;
 use App\Models\User;
 use Image;
+use Auth;
 
 class IndexController extends Controller
 {
@@ -83,5 +85,20 @@ class IndexController extends Controller
         } else {
             return Redirect()->back();
         }
+    }
+
+    public function SearchProduct(Request $request)
+    {
+        $num_page = 5;
+        $products = Product::query()
+            ->where('status', 1)
+            ->where('product_name_en', 'LIKE', "%{$request->search}%")
+            ->orWhere('short_descp_en', 'LIKE', "%{$request->search}%")
+            ->orWhere('long_descp_en', 'LIKE', "%{$request->search}%")
+            ->orderBy('id', 'DESC')
+            ->paginate($num_page);
+        $categories = Category::orderBy('category_name_en', 'ASC')->get();
+        
+        return view('frontend.shop.shop', compact('products', 'categories'));
     }
 }

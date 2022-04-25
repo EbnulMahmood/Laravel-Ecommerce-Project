@@ -171,8 +171,26 @@
                         </div>
                     </div>
                 </section>
-                @if ($order->status == 'Pending')
-                    <button type="submit" class="btn btn-success">Confirm Order</button>
+                @if ($order->return_order == 0)
+                    @if ($order->status == 'Pending')
+                        <a href="{{ route('pending.confirm', $order->id) }}" data-value='1' id="confirm_item" type="submit" class="btn btn-success">Confirm Order</a>
+                    @elseif ($order->status == 'Confirmed')
+                        <a href="{{ route('confirm.processing', $order->id) }}" data-value='2' id="confirm_item" type="submit" class="btn btn-success">Process Order</a>
+                    @elseif ($order->status == 'Processing')
+                        <a href="{{ route('processing.picked', $order->id) }}" data-value='3' id="confirm_item" type="submit" class="btn btn-success">Pick Order</a>
+                    @elseif ($order->status == 'Picked')
+                        <a href="{{ route('picked.shipped', $order->id) }}" data-value='4' id="confirm_item" type="submit" class="btn btn-success">Ship Order</a>
+                    @elseif ($order->status == 'Shipped')
+                        <a href="{{ route('shipped.delivered', $order->id) }}" data-value='5' id="confirm_item" type="submit" class="btn btn-success">Deliver Order</a>
+                    @endif
+                @elseif ($order->return_order == 1)
+                    <div class="card-body">
+                        <div class="alert alert-warning"><i class="bi bi-exclamation-triangle"></i> Cancel Order Requested.</div>
+                    </div>
+                @elseif ($order->return_order == 2)
+                    <div class="card-body">
+                        <div class="alert alert-danger"><i class="bi bi-file-excel"></i> Order has been Canceled.</div>
+                    </div>
                 @endif
             </div>
         </div>

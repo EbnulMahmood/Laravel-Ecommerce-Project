@@ -96,11 +96,11 @@
                             url($user->profile_photo_path) :
                             url('upload/no_image.jpg') }}" class="d-block rounded-circle mx-auto mb-3 mb-sm-0" width="110" alt="John Doe">
                           <div class="media-body pl-sm-3 text-center text-sm-left">
-                              <button class="btn btn-rounded btn-outline-primary btn-sm px-3 mb-2" type="button">
-                                  <i class="icon icon-sync"></i> Change avatar
+                              <button data-toggle="modal" data-target="#orderTraking" class="btn btn-rounded btn-outline-primary btn-sm px-3 mb-2" type="button">
+                                  <i class="icon icon-sync"></i> Track Order
                               </button>
                               <div>
-                                  <small class="text-muted">Upload JPG, GIF or PNG image. 100 x 100 required.</small>
+                                  <small class="text-muted">Track your order using order number.</small>
                               </div>
                           </div>
                       </div>
@@ -111,5 +111,30 @@
       </div>
   </div>
 </section>
+
+<div class="modal fade" id="orderTraking" tabindex="-1" role="dialog" aria-labelledby="orderTrakingLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="orderTrakingLabel">Track Your Order</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{{ route('order.traking') }}" method="POST">
+            @csrf
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="label" for="inputOrderId">Invoice Code</label>
+                    <input name="code" type="text" placeholder="Enter your invoice number" class="form-control form-control-simple" id="inputOrderId" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="sumbit" class="btn btn-primary">Track Now</button>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
 
 @endsection

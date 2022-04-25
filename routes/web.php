@@ -11,6 +11,8 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\ReturnController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
@@ -23,6 +25,7 @@ use App\Http\Controllers\User\MyCartController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,17 +49,14 @@ Route::middleware(['auth:admin'])->group(function() {
         return view('admin.index');
     })->name('dashboard');
 
-    Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
-
-    Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
-
-    Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
-
-    Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
-
-    Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
-
-    Route::post('/admin/update/password', [AdminProfileController::class, 'AdminUpdatePassword'])->name('admin.update.password');
+    Route::prefix('admin')->group(function() {   
+        Route::get('/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+        Route::get('/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
+        Route::get('/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
+        Route::post('/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
+        Route::get('/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
+        Route::post('/update/password', [AdminProfileController::class, 'AdminUpdatePassword'])->name('admin.update.password');
+    });
 
     // admin brand routes
     Route::prefix('brand')->group(function() {
@@ -148,13 +148,47 @@ Route::middleware(['auth:admin'])->group(function() {
     Route::prefix('order')->group(function() {
         Route::get('/pending', [OrderController::class, 'PendingOrder'])->name('pending.order');
         Route::get('/detail/{id}', [OrderController::class, 'OrderDetail'])->name('order.detail');
-        Route::get('/delete/{id}', [OrderController::class, 'OrderDelete'])->name('order.delete');
         Route::get('/confirmed', [OrderController::class, 'ConfirmedOrder'])->name('confirmed.order');
         Route::get('/processing', [OrderController::class, 'ProcessingOrder'])->name('processing.order');
         Route::get('/picked', [OrderController::class, 'PickedOrder'])->name('picked.order');
         Route::get('/shipped', [OrderController::class, 'ShippedOrder'])->name('shipped.order');
         Route::get('/delivered', [OrderController::class, 'DeliveredOrder'])->name('delivered.order');
-        Route::get('/canceled', [OrderController::class, 'CanceledOrder'])->name('canceled.order');
+
+        // change status
+        Route::get('/pending/confirm/{id}', [OrderController::class, 'PendingToConfirm'])->name('pending.confirm');
+        Route::get('/confirm/processing/{id}', [OrderController::class, 'ConfirmToProcessing'])->name('confirm.processing');
+        Route::get('/processing/picked/{id}', [OrderController::class, 'ProcessingToPicked'])->name('processing.picked');
+        Route::get('/picked/shipped/{id}', [OrderController::class, 'PickedToShipped'])->name('picked.shipped');
+        Route::get('/shipped/delivered/{id}', [OrderController::class, 'ShippedToDelivered'])->name('shipped.delivered');
+
+        // download invoice
+        Route::get('/download/invoice/{id}', [OrderController::class, 'DownloadInvoice'])->name('download.invoice');
+    });
+
+    // admin order return routes
+    Route::prefix('return')->group(function() {   
+        Route::get('/request', [ReturnController::class, 'ReturnRequest'])->name('return.request');
+        Route::get('/return/approve/{id}', [ReturnController::class, 'ReturnApprove'])->name('return.approve');
+        Route::get('/canceled', [ReturnController::class, 'CanceledOrder'])->name('canceled.order');
+    });
+
+    // admin reports routes
+    Route::prefix('reports')->group(function() {
+        Route::get('/view', [ReportController::class, 'AllReports'])->name('all.reports');
+        Route::get('/by/date', [ReportController::class, 'SearchByDate'])->name('search.by.date');
+        Route::get('/by/month', [ReportController::class, 'SearchByMonth'])->name('search.by.month');
+        Route::get('/by/year', [ReportController::class, 'SearchByYear'])->name('search.by.year');
+
+        // admin users routes
+        Route::get('/users/view', [AdminProfileController::class, 'AllUsers'])->name('all.users');
+    });
+
+    // admin order review routes
+    Route::prefix('review')->group(function() {   
+        Route::get('/pending/review', [ReviewController::class, 'PendingReview'])->name('pending.review');
+        Route::get('/user/details/{id}', [ReviewController::class, 'UserDetails'])->name('user.details');
+        Route::get('/active/{id}', [ReviewController::class, 'ReviewActive'])->name('review.active');
+        Route::get('/inactive/{id}', [ReviewController::class, 'ReviewInactive'])->name('review.inactive');
     });
 });
 
@@ -175,6 +209,9 @@ Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])
 Route::get('/user/change/password', [IndexController::class, 'ChangePassword'])->name('change.password');
 
 Route::post('/user/update/password', [IndexController::class, 'UserUpdatePassword'])->name('user.update.password');
+
+// product search route
+Route::get('/search', [IndexController::class, 'SearchProduct'])->name('search.product');
 
 Route::get('/language/bangla', [LanguageController::class, 'Bangla'])->name('bangla.language');
 
@@ -230,6 +267,9 @@ Route::post('/checkout/store', [CheckoutController::class, 'StoreCheckout'])->na
 // whishlist routes
 Route::post('/whish/product/store/{id}', [WishlistController::class, 'AddToWhishlistAJAX']);
 
+// review routes
+Route::post('/review/store', [ReviewController::class, 'ReviewStore'])->name('review.store');
+
 Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function() {
     // whishlist routes
     Route::get('/wishlist', [WishlistController::class, 'UserWishlist'])->name('user.wishlist');
@@ -238,10 +278,16 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
  
     // order routes
     Route::get('/order', [UserController::class, 'UserOrder'])->name('user.order');
+    Route::get('/return/order/{order_id}', [UserController::class, 'ReturnOrder'])->name('return.order');
+    Route::post('/cancel/order/{order_id}', [UserController::class, 'CancelOrder'])->name('cancel.order');
+    Route::get('/order/return/list', [UserController::class, 'ReturnOrderList'])->name('return.order.list');
+    Route::get('/canceled/list', [UserController::class, 'CanceledList'])->name('canceled.list');
+    
+    // order traking routes
+    Route::post('/order/traking', [UserController::class, 'OrderTraking'])->name('order.traking');
 
     // stripe routes
     Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
     Route::get('/order/receipt/{order_id}', [StripeController::class, 'OrderReceipt'])->name('order.receipt');
     Route::get('/download/receipt/{order_id}', [StripeController::class, 'DownloadReceipt'])->name('download.receipt');
-    Route::get('/return/order/{order_id}', [StripeController::class, 'ReturnOrder'])->name('return.order');
 });

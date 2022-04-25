@@ -29,7 +29,7 @@
     <link rel="stylesheet" media="all" href="{{ asset('frontend/assets/css/vendor/linear-icons.css') }}" />
     <link rel="stylesheet" media="all" href="{{ asset('frontend/assets/css/vendor/owl.carousel.css') }}" />
     <link rel="stylesheet" media="all" href="{{ asset('frontend/assets/css/vendor/jquery.lavalamp.css') }}" />
-    <script src="{{ asset('frontend/assets/css/custom.css') }}"></script>
+    <link rel="stylesheet" media="all" href="{{ asset('frontend/assets/css/custom.css') }}" />
 
     <!-- Template stylesheets -->
     <link rel="stylesheet" media="all" href="{{ asset('frontend/assets/css/style.css') }}" />

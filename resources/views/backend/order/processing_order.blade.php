@@ -5,7 +5,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Processing Orders</h3>
+                <h3>Processing Orders <span class="badge rounded-pill bg-info">{{ count($orders) }}</span></h3>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -44,7 +44,7 @@
                                         <td><span class="text-primary">{{ $order->status }}</span></td>
                                         <td>
                                             <a href="{{ route('order.detail', $order->id) }}" class="btn btn-sm btn-info"><i class="bi bi-eye" title="View">View</i></a>
-                                            <a href="{{ route('order.delete', $order->id) }}" class="btn btn-sm btn-danger" id="delete_item"><i class="bi bi-trash" title="Delete">Delete</i></a>
+                                            <a href="{{ route('download.invoice', $order->id) }}" class="btn btn-sm btn-danger"><i class="bi bi-download" title="Download"> Invoice</i></a>
                                         </td>
                                     </tr>
                                 @endforeach
